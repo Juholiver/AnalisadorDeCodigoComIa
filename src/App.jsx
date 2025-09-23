@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { analyzeCode } from './services/gemini';
+
 import './App.css'
 
 function App() {
@@ -7,7 +9,7 @@ function App() {
 
   const handleAnalyze = () => {
     if (!code.trim()) return
-    console.log('analisar codigo')
+    
   }
 
   return (
