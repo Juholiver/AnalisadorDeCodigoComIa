@@ -2,7 +2,13 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [code, setCode] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleAnalyze = () => {
+    if (!code.trim()) return
+    console.log('analisar codigo')
+  }
 
   return (
     <main>
@@ -13,9 +19,9 @@ function App() {
           sobre a arquitetura, as dependências e a qualidade do código.
         </h3>
         <div className="input-group">
-          <textarea className='code-textarea' placeholder='Cole seu código aqui (JavaScript, HTML, CSS ETC...)'></textarea>
+          <textarea className='code-textarea' placeholder='Cole seu código aqui (JavaScript, HTML, CSS ETC...)' value={code} onChange={(e) => setCode(e.target.value)}></textarea>
         </div>
-        <button className="analyze-button">Analisar Código</button>
+        <button className="analyze-button" onClick={handleAnalyze} disabled={!code.trim() || loading }>Analisar Código</button>
         <div className="error-message">Deu erro</div>
         
         <div className="result-container">
