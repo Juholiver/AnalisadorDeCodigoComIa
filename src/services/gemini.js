@@ -16,6 +16,7 @@ export async function analyzeCode(code) {
     5. Sugestões específicas de otimização
    
     IMPORTANTE:
+    - Explique o problema e solução como se eu fosse iniciante em programação.
     - Formate a resposta usando markdown
     - Use ### para títulos das seções
     - Use **negrito** para destacar pontos importantes

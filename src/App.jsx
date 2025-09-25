@@ -6,10 +6,24 @@ import './App.css'
 function App() {
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState('');
+  const [error, setError] = useState('');
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
     if (!code.trim()) return
     
+    setLoading(true);
+    setError('');
+    setResult('');
+
+    try{
+      const analysis = await analyzeCode(code);
+      setResult(analysis);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -23,13 +37,16 @@ function App() {
         <div className="input-group">
           <textarea className='code-textarea' placeholder='Cole seu código aqui (JavaScript, HTML, CSS ETC...)' value={code} onChange={(e) => setCode(e.target.value)}></textarea>
         </div>
-        <button className="analyze-button" onClick={handleAnalyze} disabled={!code.trim() || loading }>Analisar Código</button>
-        <div className="error-message">Deu erro</div>
-        
-        <div className="result-container">
-          <h2 className="result-title">Resultado da Análise:</h2>
-          <div className="result-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nulla, dolores quia aliquid at, vero quidem repellendus ducimus rerum animi sapiente quas voluptatum incidunt esse recusandae temporibus, cum dignissimos ut?</div>
-        </div>
+        <button className="analyze-button" onClick={handleAnalyze} disabled={!code.trim() || loading }>{loading ? 'Analisando...' : 'Analisar Código'}</button>
+
+        {error && <div className="error-message">{error}</div>}
+
+        {result && (
+          <div className="result-container">
+            <h2 className="result-title">Resultado da Análise:</h2>
+            <div className="result-content">{result}</div>
+          </div>
+        )}
       </div>
     </main>
   )
