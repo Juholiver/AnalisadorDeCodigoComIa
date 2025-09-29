@@ -36,7 +36,7 @@ export async function analyzeCode(code) {
     Máximo 3 frases. Direto ao ponto.
     `;
     try {
-        const model = geminiClient.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const model = geminiClient.getGenerativeModel({ model: 'gemini-2.5-flash' });
         const result = await model.generateContent(prompt);
         const response = await result.response;
         return response.text();
