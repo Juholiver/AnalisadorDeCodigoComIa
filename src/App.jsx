@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { analyzeCode } from './services/analyzeService'
+import { analyzeCode } from './services/gemini'
 
 
 import './App.css'
